@@ -1,0 +1,114 @@
+<app-toolbar [backUrl]="'/fd-tracker'" [text]="'Track FD'" (backButtonEvent)="backButtonClick($event)"></app-toolbar>
+<div class="main-content">
+
+
+  <!-- Form 1 -->
+  <ng-container *ngIf="step == 1">
+    <form [formGroup]="firstFormGroup" class="info-form-1">
+      <h3>Add Fixed Deposit Information</h3>
+      <h5>Step 1 of 2</h5>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Organization type</mat-label>
+
+        <mat-select formControlName="orgType">
+          <mat-option value="bank">Bank</mat-option>
+          <mat-option value="corporate">Corporate</mat-option>
+          <mat-option value="post_office">Post Office</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Organization Name</mat-label>
+        <input matInput formControlName="orgName" required>
+      </mat-form-field>
+
+    </form>
+
+    <div class="button-container">
+      <button class="next-button" color="primary" mat-raised-button [disabled]="!firstFormGroup.valid" (click)="onFirstFormNextClick()">Next</button>
+    </div>
+
+  </ng-container>
+
+  <!-- Form 2 -->
+  <ng-container *ngIf="step == 2">
+
+    <form [formGroup]="secondFormGroup" class="info-form-1">
+      <h3>Add Fixed Deposit Information</h3>
+      <h5>Step 2 of 2</h5>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Investment Amount</mat-label>
+        <input matInput formControlName="investmentAmount" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Annual Rate of Interest %</mat-label>
+        <input matInput formControlName="rateOfInterest" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="startDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+      <p>Tenure</p>
+      <div style="display: flex; gap: 10px;">
+        <mat-form-field appearance="fill">
+          <mat-label>Year</mat-label>
+          <input matInput formControlName="year" required>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Months</mat-label>
+          <input matInput formControlName="months" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Days</mat-label>
+          <input matInput formControlName="days" required>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Fixed Deposit Type</mat-label>
+
+      <mat-select formControlName="fdType">
+        <mat-option value="taxSaving">Tax Saving</mat-option>
+        <mat-option value="cumulative">Cumulative</mat-option>
+        <mat-option value="payOut">Pay Out</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Payout Structure</mat-label>
+
+      <mat-select formControlName="payOutStructure">
+        <mat-option value="maturityOnly">Maturity Only</mat-option>
+        <mat-option value="monthly">Monthly</mat-option>
+        <mat-option value="quarterly">Quarterly</mat-option>
+        <mat-option value="halfYearly">Half Yearly</mat-option>
+        <mat-option value="yearly">Yearly</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Interest Compounding Frequency</mat-label>
+
+      <mat-select formControlName="interestCompoundingFrequency">
+        <mat-option value="quarterly">Quarterly</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    </form>
+
+    <div class="button-container">
+      <button class="next-button" color="primary" mat-raised-button (click)="onSubmit()">Submit</button>
+    </div>
+  </ng-container>
+</div>
