@@ -38,18 +38,18 @@
       <h5>Step 2 of 2</h5>
       <mat-form-field appearance="fill" style="width: 100%;">
         <mat-label>Investment Amount</mat-label>
-        <input matInput formControlName="investmentAmount" required>
+        <input matInput formControlName="investmentAmount" required inputmode="numeric" type="number">
       </mat-form-field>
 
       <mat-form-field appearance="fill" style="width: 100%;">
         <mat-label>Annual Rate of Interest %</mat-label>
-        <input matInput formControlName="rateOfInterest" required>
+        <input matInput formControlName="rateOfInterest" required inputmode="numeric" type="number">
       </mat-form-field>
 
       <mat-form-field appearance="fill" style="width: 100%;">
         <mat-label>Start Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="startDate">
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <input matInput [matDatepicker]="picker" formControlName="startDate" type="date">
+        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -59,17 +59,17 @@
       <div style="display: flex; gap: 10px;">
         <mat-form-field appearance="fill">
           <mat-label>Year</mat-label>
-          <input matInput formControlName="year" required>
+          <input matInput formControlName="year" required inputmode="numeric" type="number">
         </mat-form-field>
         
         <mat-form-field appearance="fill">
           <mat-label>Months</mat-label>
-          <input matInput formControlName="months" required>
+          <input matInput formControlName="months" required inputmode="numeric" type="number">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Days</mat-label>
-          <input matInput formControlName="days" required>
+          <input matInput formControlName="days" required inputmode="numeric" type="number">
         </mat-form-field>
     </div>
 
