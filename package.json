@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --base-href=./",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "make": "ng build --base-href=./ && cp -Rf dist/investment-tracker/* mob_app/www && cd mob_app && npx cordova build android"
   },
   "private": true,
   "dependencies": {
