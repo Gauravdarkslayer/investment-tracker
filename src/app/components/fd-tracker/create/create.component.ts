@@ -20,7 +20,7 @@ export class CreateComponent {
     months: ['', Validators.required],
     days: ['', Validators.required],
     fdType: ['', Validators.required],
-    payOutStructure: ['', Validators.required],
+    payOutStructure: [''],
     interestCompoundingFrequency: ['', Validators.required],
   });
   
@@ -35,8 +35,14 @@ export class CreateComponent {
     
   }
 
-  onSubmit() {
-
+  onSubmit(): boolean | void {
+    console.log(this.secondFormGroup.valid);
+    
+    if(!this.secondFormGroup.valid) return false;
+    if(this.secondFormGroup.value.fdType != 'payOut') {
+      this.secondFormGroup.value.payOutStructure = '';
+    }
+    alert(JSON.stringify(this.secondFormGroup.value))
   }
 
   backButtonClick(event:any) {

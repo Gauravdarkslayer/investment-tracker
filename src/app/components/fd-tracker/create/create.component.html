@@ -46,9 +46,9 @@
         <input matInput formControlName="rateOfInterest" required inputmode="numeric" type="number">
       </mat-form-field>
 
-      <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-form-field appearance="fill" style="width: 100%;" (click)="picker.open()">
         <mat-label>Start Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="startDate" type="date">
+        <input matInput [matDatepicker]="picker" formControlName="startDate">
         <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -59,12 +59,17 @@
       <div style="display: flex; gap: 10px;">
         <mat-form-field appearance="fill">
           <mat-label>Year</mat-label>
-          <input matInput formControlName="year" required inputmode="numeric" type="number">
+          <mat-select  formControlName="year">
+            <mat-option *ngFor="let yr of [0,1,2,3,4,5,6,7,8,9,10]" [value]="yr">{{yr}}</mat-option>
+          </mat-select>
         </mat-form-field>
         
         <mat-form-field appearance="fill">
           <mat-label>Months</mat-label>
-          <input matInput formControlName="months" required inputmode="numeric" type="number">
+          <mat-select  formControlName="months">
+            <mat-option *ngFor="let mo of [0,1,2,3,4,5,6,7,8,9,10,11,12]" [value]="mo">{{mo}}</mat-option>
+          </mat-select>
+          
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -84,7 +89,7 @@
     </mat-form-field>
 
 
-    <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-form-field appearance="fill" style="width: 100%;" *ngIf="secondFormGroup.value.fdType =='payOut'">
       <mat-label>Payout Structure</mat-label>
 
       <mat-select formControlName="payOutStructure">
