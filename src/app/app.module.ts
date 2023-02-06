@@ -10,6 +10,8 @@ import { EditComponent } from './components/fd-tracker/edit/edit.component';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
+import { JwtService } from './services/jwt.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { ToolbarComponent } from './components/shared/toolbar/toolbar.component'
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [JwtService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

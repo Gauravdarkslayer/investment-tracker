@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-create',
@@ -27,7 +28,10 @@ export class CreateComponent {
   isEditable:boolean=true;
   step:number = 1;
   
-  constructor(private _formBuilder: FormBuilder, private router:Router) {}
+  constructor(private _formBuilder: FormBuilder, private router:Router, private dataService: DataService) {
+    console.log();
+    
+  }
 
   onFirstFormNextClick() {
     console.log(this.firstFormGroup.value);
