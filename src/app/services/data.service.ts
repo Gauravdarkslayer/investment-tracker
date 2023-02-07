@@ -7,8 +7,8 @@ export class DataService {
     realmApp!: Realm.App;
 
     constructor(private snackBar:MatSnackBar) {
-        this.initApp();
-        this.loginEmailPassword('gaurav@gmail.com','1234412344')
+        // this.initApp();
+        // this.loginEmailPassword('gaurav@gmail.com','1234412344')
     }
 
     async initApp() {

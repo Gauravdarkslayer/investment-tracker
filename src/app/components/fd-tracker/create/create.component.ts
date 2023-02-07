@@ -12,6 +12,8 @@ export class CreateComponent {
   firstFormGroup = this._formBuilder.group({
     orgType: ['', Validators.required],
     orgName: ['', Validators.required],
+    category: ['', Validators.required],
+    newCategoryName: [''],
   });
   secondFormGroup = this._formBuilder.group({
     investmentAmount: ['', Validators.required],
@@ -46,7 +48,9 @@ export class CreateComponent {
     if(this.secondFormGroup.value.fdType != 'payOut') {
       this.secondFormGroup.value.payOutStructure = '';
     }
-    alert(JSON.stringify(this.secondFormGroup.value))
+
+    const mergedFormData = {...this.secondFormGroup.value, ...this.firstFormGroup.value}
+    alert(JSON.stringify(mergedFormData))
   }
 
   backButtonClick(event:any) {
