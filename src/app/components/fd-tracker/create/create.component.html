@@ -24,15 +24,13 @@
 
       <mat-form-field appearance="fill" style="width: 100%;">
         <mat-label>Select Category</mat-label>
-        <mat-select formControlName="category">
-          <mat-option value="bank">Bank</mat-option>
-          <mat-option value="corporate">Corporate</mat-option>
-          <mat-option value="post_office">Post Office</mat-option>
+        <mat-select formControlName="category_id">
+          <mat-option *ngFor="let category of categories" [value]="category._id">{{category.name}}</mat-option>
           <mat-option value="other">Other</mat-option>
         </mat-select>      
       </mat-form-field>
 
-      <mat-form-field appearance="fill" style="width: 100%;" *ngIf="firstFormGroup.value.category ==='other'">
+      <mat-form-field appearance="fill" style="width: 100%;" *ngIf="firstFormGroup.value.category_id ==='other'">
         <mat-label>Category Name</mat-label>
         <input matInput formControlName="newCategoryName" required>
       </mat-form-field>

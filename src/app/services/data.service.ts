@@ -6,15 +6,14 @@ import * as Realm from 'realm-web'
 export class DataService {
     realmApp!: Realm.App;
     mongoClient: any;
-    constructor(private snackBar:MatSnackBar) {
+    constructor(private snackBar: MatSnackBar) {
         this.initApp();
-        this.loginEmailPassword('gaurav@gmail.com','1234412344')
+        this.loginEmailPassword('gaurav@gmail.com', '1234412344')
     }
 
-    async initApp() {
+    private async initApp() {
         this.realmApp = new Realm.App({ id: "application-0-kmsrp" });
         this.mongoClient = this.realmApp.currentUser!.mongoClient('mongodb-atlas');
-        this.createOrConnectWithCollection()
     }
 
     async loginEmailPassword(email: string, password: string) {
@@ -25,16 +24,41 @@ export class DataService {
         // `App.currentUser` updates to match the logged in user
         console.assert(user.id === this.realmApp.currentUser!.id);
         console.log(user);
-        this.snackBar.open('Welcome ' + user.profile.email,'',{
-            duration: 3000
-          });
+        this.snackBar.open('Welcome ' + user.profile.email, '', {
+            duration: 2000
+        });
 
         return user;
     }
 
-    async createOrConnectWithCollection() {
-        const collection = this.mongoClient.db('investment-tracker').collection('category');
-        console.log(await collection.insertOne({name:"MyFirstCategory"}))
+    createOrConnectWithCollection(collectionName: string) {
+        const collection = this.mongoClient.db('investment-tracker').collection(collectionName);
+        // console.log(await collection.insertOne({name:"MyFirstCategory"}))
         return collection;
+    }
+
+    async getCategories() {
+        return await this.createOrConnectWithCollection('category').find();
+    }
+
+    async createCategory(catName: string) {
+        return await this.createOrConnectWithCollection('category').insertOne({ name: catName })
+    }
+
+    async createInvestment(investmentData: any) {
+        return await this.createOrConnectWithCollection('investment').insertOne(investmentData);
+    }
+
+    async getAllCategoriesGroupedWithInvestments() {
+        return await this.createOrConnectWithCollection('category').aggregate([
+            {
+                $lookup:{
+                    from: 'investment',
+                    localField: '_id',
+                    foreignField: 'category_id',
+                    as: 'invesments'
+                }
+            }
+        ]);
     }
 }
