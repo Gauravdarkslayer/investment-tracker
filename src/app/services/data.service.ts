@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as Realm from 'realm-web'
+const {
+    BSON: { ObjectId },
+} = Realm;
 
 @Injectable()
 export class DataService {
@@ -52,7 +55,7 @@ export class DataService {
     async getAllCategoriesGroupedWithInvestments() {
         return await this.createOrConnectWithCollection('category').aggregate([
             {
-                $lookup:{
+                $lookup: {
                     from: 'investment',
                     localField: '_id',
                     foreignField: 'category_id',
@@ -60,5 +63,9 @@ export class DataService {
                 }
             }
         ]);
+    }
+
+    async getInvestmentsByCategoryId(category_id: string) {
+        return await this.createOrConnectWithCollection('investment').find({ category_id: new ObjectId(category_id) });
     }
 }

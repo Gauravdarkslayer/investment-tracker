@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -7,15 +8,19 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./fd-tracker.component.less']
 })
 export class FdTrackerComponent implements OnInit{
-  investments:Array<any>=[];
-  constructor(private dataService: DataService) {}
+  categories:Array<any>=[];
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit() {
-    this.getAllInvestments()
+    this.getAllCategories();
   }
 
-  async getAllInvestments() {
-    this.investments = await this.dataService.getAllCategoriesGroupedWithInvestments();
-    console.log(this.investments);
+  async getAllCategories() {
+    this.categories = await this.dataService.getAllCategoriesGroupedWithInvestments();
+    console.log(this.categories);
+  }
+
+  navigateTo(url:string) {
+    this.router.navigateByUrl(url);
   }
 }

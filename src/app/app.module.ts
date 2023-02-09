@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
 import { JwtService } from './services/jwt.service';
 import { DataService } from './services/data.service';
+import { InvestmentListComponent } from './components/fd-tracker/investment-list/investment-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DataService } from './services/data.service';
     FdTrackerComponent,
     CreateComponent,
     EditComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    InvestmentListComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,7 @@ import { DataService } from './services/data.service';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [JwtService,DataService],
   bootstrap: [AppComponent]
