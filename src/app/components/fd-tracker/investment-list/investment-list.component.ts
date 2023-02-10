@@ -9,7 +9,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class InvestmentListComponent implements OnInit{
   investments:Array<any>=[];
-  
+  isInProgress: boolean = true;
   constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router) {}
   
   ngOnInit(): void {
@@ -18,8 +18,10 @@ export class InvestmentListComponent implements OnInit{
   }
 
   async getInvestments(category_id:string) {
+    this.isInProgress = true;
     this.investments = await this.dataService.getInvestmentsByCategoryId(category_id);
     console.log(this.investments);
+    this.isInProgress = false;
     
   }
 
