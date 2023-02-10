@@ -11,7 +11,7 @@ export class DataService {
     mongoClient: any;
     constructor(private snackBar: MatSnackBar) {
         this.initApp();
-        this.loginEmailPassword('gaurav@gmail.com', '1234412344')
+        this.loginEmailPassword('gaurav@gmail.com', '1234412344');
     }
 
     private async initApp() {
@@ -20,7 +20,8 @@ export class DataService {
     }
 
     async loginEmailPassword(email: string, password: string) {
-        // Create an email/password credential
+        try {
+            // Create an email/password credential
         const credentials = Realm.Credentials.emailPassword(email, password);
         // Authenticate the user
         const user = await this.realmApp.logIn(credentials);
@@ -32,6 +33,11 @@ export class DataService {
         });
 
         return user;
+        } catch (error) {
+            alert(JSON.stringify(error))
+            return null;
+        }
+        
     }
 
     createOrConnectWithCollection(collectionName: string) {
