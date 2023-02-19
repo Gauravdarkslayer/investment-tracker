@@ -15,6 +15,9 @@ import { DataService } from './services/data.service';
 import { InvestmentListComponent } from './components/fd-tracker/investment-list/investment-list.component';
 import { ProgressLoaderComponent } from './components/shared/progress-loader/progress-loader.component';
 import { InvestmentOverviewDashboardComponent } from './components/shared/investment-overview-dashboard/investment-overview-dashboard.component';
+import { FdCalculationsService } from './services/fd-calculations.service';
+import { HelperService } from './services/helper.service';
+import { InvestmentDetailComponent } from './components/investment-detail/investment-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { InvestmentOverviewDashboardComponent } from './components/shared/invest
     ToolbarComponent,
     InvestmentListComponent,
     ProgressLoaderComponent,
-    InvestmentOverviewDashboardComponent
+    InvestmentOverviewDashboardComponent,
+    InvestmentDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { InvestmentOverviewDashboardComponent } from './components/shared/invest
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [JwtService,DataService],
+  providers: [JwtService,DataService,FdCalculationsService,HelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

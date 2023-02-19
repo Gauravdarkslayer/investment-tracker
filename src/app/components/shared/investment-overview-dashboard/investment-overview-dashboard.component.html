@@ -1,10 +1,9 @@
-<div>
     <div class="child-content1">
         <p>
             Current value
         </p>
         <h1>
-            $100.22
+            {{dashboardData.currentValue}}
         </h1>
     </div>
     
@@ -15,7 +14,7 @@
                 Invested value
             </p>
             <h4>
-                $20
+                ${{dashboardData.investedValue}}
             </h4>
         </div>
         
@@ -25,7 +24,7 @@
                 Average return
             </p>
             <h4>
-                7.7%
+                {{dashboardData.averageReturn}}
             </h4>
         </div>
         
@@ -35,9 +34,8 @@
                 Interest earned
             </p>
             <h4>
-                $80
+                {{dashboardData.interestEarned}}
             </h4>
         </div>
 
     </div>
-</div>

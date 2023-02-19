@@ -42,4 +42,6 @@ export class InvestmentListComponent implements OnInit {
     return maturityDateString; // outputs the maturity date in the specified format
 
   }
+
+  
 }
