@@ -14,6 +14,7 @@ import { JwtService } from './services/jwt.service';
 import { DataService } from './services/data.service';
 import { InvestmentListComponent } from './components/fd-tracker/investment-list/investment-list.component';
 import { ProgressLoaderComponent } from './components/shared/progress-loader/progress-loader.component';
+import { InvestmentOverviewDashboardComponent } from './components/shared/investment-overview-dashboard/investment-overview-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProgressLoaderComponent } from './components/shared/progress-loader/pro
     EditComponent,
     ToolbarComponent,
     InvestmentListComponent,
-    ProgressLoaderComponent
+    ProgressLoaderComponent,
+    InvestmentOverviewDashboardComponent
   ],
   imports: [
     BrowserModule,

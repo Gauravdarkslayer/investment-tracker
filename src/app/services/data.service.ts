@@ -11,7 +11,7 @@ export class DataService {
     mongoClient: any;
     constructor(private snackBar: MatSnackBar) {
         this.initApp();
-        this.loginEmailPassword('gaurav@gmail.com', '1234412344');
+        // this.loginEmailPassword('gaurav@gmail.com', '1234412344');
     }
 
     private async initApp() {
