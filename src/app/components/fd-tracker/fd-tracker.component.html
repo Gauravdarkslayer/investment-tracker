@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<app-investment-overview-dashboard></app-investment-overview-dashboard>
+<app-investment-overview-dashboard [investmentData]="categories" [dataType]="'category'" *ngIf="!isInProgress"></app-investment-overview-dashboard>
 <mat-divider></mat-divider>
 
 <br>

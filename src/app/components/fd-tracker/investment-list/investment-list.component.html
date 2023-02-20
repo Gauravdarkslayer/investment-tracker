@@ -1,6 +1,6 @@
 <app-toolbar [backUrl]="'/fd-tracker'" [text]="'Track FD'" (backButtonEvent)="backButtonClick($event)"></app-toolbar>
 <app-investment-overview-dashboard *ngIf="!isInProgress"
-  [investmentData]="investments"></app-investment-overview-dashboard>
+  [investmentData]="investments" [dataType]="'investment'"></app-investment-overview-dashboard>
 
 <app-progress-loader [isInProgress]="isInProgress"></app-progress-loader>
 

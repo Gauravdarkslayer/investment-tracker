@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Category } from 'src/app/interfaces/category.interface';
 import { Investment } from 'src/app/interfaces/investment.interface';
 import { FdCalculationsService } from 'src/app/services/fd-calculations.service';
 
@@ -8,7 +9,10 @@ import { FdCalculationsService } from 'src/app/services/fd-calculations.service'
   styleUrls: ['./investment-overview-dashboard.component.less']
 })
 export class InvestmentOverviewDashboardComponent implements OnInit {
-  @Input() investmentData: Array<Investment> = [];
+  @Input()
+  investmentData: Array<Investment | Category> = [];
+  @Input()
+  dataType: 'category' | 'investment' = 'category';
   dashboardData: { averageReturn: number; investedValue: number; interestEarned: number; currentValue: number; } | undefined;
 
   constructor(private fdCalculation: FdCalculationsService) { }
@@ -21,6 +25,10 @@ export class InvestmentOverviewDashboardComponent implements OnInit {
   }
 
   getFdDashboardData() {
-    this.dashboardData = this.fdCalculation.allFdInCategoryCalculations(this.investmentData);
+    if (this.dataType == 'investment') {
+      this.dashboardData = this.fdCalculation.allFdInCategoryCalculations(this.investmentData as Investment[]);
+    } else {
+      this.dashboardData = this.fdCalculation.allCategoriesFdCalculation(this.investmentData as Category[]);
+    }
   }
 }

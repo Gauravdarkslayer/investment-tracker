@@ -18,6 +18,7 @@ import { InvestmentOverviewDashboardComponent } from './components/shared/invest
 import { FdCalculationsService } from './services/fd-calculations.service';
 import { HelperService } from './services/helper.service';
 import { InvestmentDetailComponent } from './components/investment-detail/investment-detail.component';
+import { ToNumberPipe } from './pipes/toNumber.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { InvestmentDetailComponent } from './components/investment-detail/invest
     InvestmentListComponent,
     ProgressLoaderComponent,
     InvestmentOverviewDashboardComponent,
-    InvestmentDetailComponent
+    InvestmentDetailComponent,
+    ToNumberPipe
   ],
   imports: [
     BrowserModule,

@@ -65,7 +65,7 @@ export class DataService {
                     from: 'investment',
                     localField: '_id',
                     foreignField: 'category_id',
-                    as: 'invesments'
+                    as: 'investments'
                 }
             }
         ]);
