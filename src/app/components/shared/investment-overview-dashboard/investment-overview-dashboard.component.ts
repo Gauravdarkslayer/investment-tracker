@@ -9,7 +9,7 @@ import { FdCalculationsService } from 'src/app/services/fd-calculations.service'
 })
 export class InvestmentOverviewDashboardComponent implements OnInit {
   @Input() investmentData: Array<Investment> = [];
-  dashboardData!: { averageReturn: number, investedValue: number, interestEarned: number, currentValue: number };
+  dashboardData: { averageReturn: number; investedValue: number; interestEarned: number; currentValue: number; } | undefined;
 
   constructor(private fdCalculation: FdCalculationsService) { }
 
