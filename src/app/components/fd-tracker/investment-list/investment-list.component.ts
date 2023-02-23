@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Investment } from 'src/app/interfaces/investment.interface';
 import { DataService } from 'src/app/services/data.service';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-investment-list',
@@ -11,7 +12,8 @@ import { DataService } from 'src/app/services/data.service';
 export class InvestmentListComponent implements OnInit {
   investments: Array<Investment> = [];
   isInProgress: boolean = true;
-  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router,
+    private helper: HelperService) { }
 
   ngOnInit(): void {
     this.getInvestments(this.route.snapshot.params['id']);
@@ -27,21 +29,14 @@ export class InvestmentListComponent implements OnInit {
   }
 
   backButtonClick(event: any) {
+    console.log('calling');
+    
     this.router.navigate(['..']);
   }
 
   getMaturityDate(year: number, month: number, day: number) {
-    const maturityDate = new Date();
-
-    maturityDate.setFullYear(maturityDate.getFullYear() + year);
-    maturityDate.setMonth(maturityDate.getMonth() + month);
-    maturityDate.setDate(maturityDate.getDate() + day);
-
-    const maturityDateString = maturityDate.toISOString().substring(0, 10); // format: yyyy-mm-dd
-
-    return maturityDateString; // outputs the maturity date in the specified format
-
+    return this.helper.getMaturityDate(year, month, day);
   }
 
-  
+
 }

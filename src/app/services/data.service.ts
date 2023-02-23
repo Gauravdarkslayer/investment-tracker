@@ -74,4 +74,8 @@ export class DataService {
     async getInvestmentsByCategoryId(category_id: string) {
         return await this.createOrConnectWithCollection('investment').find({ category_id: new ObjectId(category_id) });
     }
+
+    async getInvestmentById(investment_id: string) {
+        return await this.createOrConnectWithCollection('investment').findOne({ _id: new ObjectId(investment_id) });
+    }
 }

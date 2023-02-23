@@ -17,7 +17,7 @@ import { ProgressLoaderComponent } from './components/shared/progress-loader/pro
 import { InvestmentOverviewDashboardComponent } from './components/shared/investment-overview-dashboard/investment-overview-dashboard.component';
 import { FdCalculationsService } from './services/fd-calculations.service';
 import { HelperService } from './services/helper.service';
-import { InvestmentDetailComponent } from './components/investment-detail/investment-detail.component';
+import { InvestmentDetailComponent } from './components/fd-tracker/investment-detail/investment-detail.component';
 import { ToNumberPipe } from './pipes/toNumber.pipe';
 
 @NgModule({

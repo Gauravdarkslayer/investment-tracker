@@ -1,11 +1,11 @@
-<app-toolbar [backUrl]="'/fd-tracker'" [text]="'Track FD'" (backButtonEvent)="backButtonClick($event)"></app-toolbar>
+<app-toolbar [backUrl]="'/fd-tracker'" [text]="'Investment list'" (backButtonEvent)="backButtonClick($event)"></app-toolbar>
 <app-investment-overview-dashboard *ngIf="!isInProgress"
   [investmentData]="investments" [dataType]="'investment'"></app-investment-overview-dashboard>
 
 <app-progress-loader [isInProgress]="isInProgress"></app-progress-loader>
 
 <ng-container *ngFor="let investment of investments">
-  <mat-card class="example-card">
+  <mat-card class="example-card" [routerLink]="['/investment-detail', investment._id!.toString()]">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{investment.orgName}}</mat-card-title>
