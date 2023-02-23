@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Investment } from 'src/app/interfaces/investment.interface';
 import { DataService } from 'src/app/services/data.service';
 @Component({
@@ -8,10 +8,10 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './investment-detail.component.html',
   styleUrls: ['./investment-detail.component.less']
 })
-export class InvestmentDetailComponent implements OnInit  {
+export class InvestmentDetailComponent implements OnInit {
   investment!: Investment;
   isInProgress: boolean = true;
-  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router,
+  constructor(private dataService: DataService, private route: ActivatedRoute,
     private _location: Location) { }
 
   ngOnInit(): void {
@@ -29,5 +29,5 @@ export class InvestmentDetailComponent implements OnInit  {
   backButtonClick(event: any) {
     this._location.back();
   }
-  
+
 }
