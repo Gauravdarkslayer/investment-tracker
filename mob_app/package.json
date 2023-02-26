@@ -1,8 +1,8 @@
 {
-  "name": "com.example.hello",
-  "displayName": "OurFirstApp",
-  "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "name": "com.gaurav.investment_tracker",
+  "displayName": "Investment Tracker",
+  "version": "1.1.0",
+  "description": "Investment tracker application.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
   "keywords": [
     "ecosystem:cordova"
   ],
-  "author": "Apache Cordova Team",
+  "author": "Gaurav Bhojwani",
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^9.1.0",

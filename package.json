@@ -7,7 +7,8 @@
     "build": "ng build --base-href=./",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "make": "ng build --base-href=./ && cp -Rf dist/investment-tracker/* mob_app/www && cd mob_app && npx cordova build android"
+    "make": "ng build --base-href=./ && cp -Rf dist/investment-tracker/* mob_app/www && cd mob_app && npx cordova build android",
+    "source-map-explorer": "source-map-explorer dist/investment-tracker/**/*.js"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +38,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "source-map-explorer": "^2.5.3",
     "typescript": "~4.9.4"
   }
 }

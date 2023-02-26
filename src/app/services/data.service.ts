@@ -7,37 +7,44 @@ const {
 
 @Injectable()
 export class DataService {
-    realmApp!: Realm.App;
+    private static realmApp: Realm.App;
     mongoClient: any;
     constructor(private snackBar: MatSnackBar) {
         this.initApp();
         // this.loginEmailPassword('gaurav@gmail.com', '1234412344');
     }
 
+    async getAppInstance() {
+        if (!DataService.realmApp) {
+            this.initApp();
+        }
+        return DataService.realmApp;
+    }
+
     private async initApp() {
-        this.realmApp = new Realm.App({ id: "application-0-kmsrp" });
-        this.mongoClient = this.realmApp.currentUser!.mongoClient('mongodb-atlas');
+        DataService.realmApp = new Realm.App({ id: "application-0-kmsrp" });
+        this.mongoClient = DataService.realmApp.currentUser!.mongoClient('mongodb-atlas');
     }
 
     async loginEmailPassword(email: string, password: string) {
         try {
             // Create an email/password credential
-        const credentials = Realm.Credentials.emailPassword(email, password);
-        // Authenticate the user
-        const user = await this.realmApp.logIn(credentials);
-        // `App.currentUser` updates to match the logged in user
-        console.assert(user.id === this.realmApp.currentUser!.id);
-        console.log(user);
-        this.snackBar.open('Welcome ' + user.profile.email, '', {
-            duration: 2000
-        });
+            const credentials = Realm.Credentials.emailPassword(email, password);
+            // Authenticate the user
+            const user = await DataService.realmApp.logIn(credentials);
+            // `App.currentUser` updates to match the logged in user
+            console.assert(user.id === DataService.realmApp.currentUser!.id);
+            console.log(user);
+            this.snackBar.open('Welcome ' + user.profile.email, '', {
+                duration: 2000
+            });
 
-        return user;
+            return user;
         } catch (error) {
             alert(JSON.stringify(error))
             return null;
         }
-        
+
     }
 
     createOrConnectWithCollection(collectionName: string) {
