@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'investment-tracker';
+  isLoading=true;
+  constructor(private dataService:DataService) {
+    this.checkLogin()
+  }
+
+  async checkLogin() {
+    if(await this.dataService.loginEmailPassword('gaurav@gmail.com', '1234412344')) {
+      this.isLoading=false;
+    }
+
+  }
 }
