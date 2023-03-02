@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/interfaces/category.interface';
 import { DataService } from 'src/app/services/data.service';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-fd-tracker',
@@ -26,5 +27,17 @@ export class FdTrackerComponent implements OnInit {
 
   navigateTo(url: string) {
     this.router.navigateByUrl(url);
+  }
+
+  async deleteCategory(event:any,id:string) {
+    event.stopPropagation();
+    if(confirm('Are you sure you want to delete this category ?')) {
+      if(1 || await this.dataService.deleteCategory(id)) {
+        this.categories = this.categories.filter(arr => arr._id !== id);
+      }
+      alert('you pressed yes, it will not delete category')
+    } else {
+      alert('operation cancelled');
+    }
   }
 }

@@ -91,4 +91,13 @@ export class DataService {
     async getInvestmentById(investment_id: string) {
         return await this.createOrConnectWithCollection('investment').findOne({ _id: new ObjectId(investment_id) });
     }
+
+    async deleteCategory(category_id: string) {
+        try {
+            this.createOrConnectWithCollection('investment').deleteMany({ category_id: new ObjectId(category_id) });
+            return await this.createOrConnectWithCollection('category').deleteOne({ _id: new ObjectId(category_id) });
+        } catch (error) {
+            return false;
+        }
+    }
 }
