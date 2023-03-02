@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { from } from 'rxjs';
 import { DataService } from './services/data.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class AppComponent {
   }
 
   async checkLogin() {
+    // from(this.dataService.loginEmailPassword('gaurav@gmail.com', '1234412344')).subscribe
     if(await this.dataService.loginEmailPassword('gaurav@gmail.com', '1234412344')) {
       this.isLoading=false;
     }
