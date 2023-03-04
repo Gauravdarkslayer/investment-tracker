@@ -95,8 +95,16 @@ export class DataService {
 
     async deleteCategory(category_id: string) {
         try {
-            this.createOrConnectWithCollection('investment').deleteMany({ category_id: new ObjectId(category_id) });
+            await this.createOrConnectWithCollection('investment').deleteMany({ category_id: new ObjectId(category_id) });
             return await this.createOrConnectWithCollection('category').deleteOne({ _id: new ObjectId(category_id) });
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async deleteInvestment(id: string) {
+        try {
+            return await this.createOrConnectWithCollection('investment').deleteMany({ _id: new ObjectId(id) });
         } catch (error) {
             return false;
         }

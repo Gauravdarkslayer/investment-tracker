@@ -10,6 +10,9 @@
       <mat-card-title-group>
         <mat-card-title>{{investment.orgName}}</mat-card-title>
         <mat-card-subtitle>{{investment.orgType}}</mat-card-subtitle>
+        <button  mat-button (click)="deleteInvestment($event,investment._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
         <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
       </mat-card-title-group>
     </mat-card-header>

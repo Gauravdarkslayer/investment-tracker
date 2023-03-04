@@ -10,6 +10,8 @@ export class FdCalculationsService {
     }
 
     allCategoriesFdCalculation(categoriesData: Array<Category>) {
+        console.log(categoriesData);
+        
         let averageReturn = 0;
         let { investedValue, interestEarned, totalNumberOfInvestments } = categoriesData.reduce(
             (acc, category) => {
@@ -18,16 +20,18 @@ export class FdCalculationsService {
                 acc.investedValue += investments.reduce((sum, { investmentAmount }) => sum + investmentAmount, 0);
                 acc.interestEarned += investments.reduce((sum, { startDate, investmentAmount, rateOfInterest }) => {
                     const days = Math.floor((Number(new Date()) - Number(new Date(startDate))) / (1000 * 3600 * 24));
-                    return sum + (investmentAmount * (rateOfInterest / 100) * (days / 365));
+                    const interest = investmentAmount * (rateOfInterest / 100) * (days / 365);
+                    averageReturn += rateOfInterest;
+                    return sum + interest;
                 }, 0);
                 return acc;
             },
             { investedValue: 0, interestEarned: 0, totalNumberOfInvestments: 0 }
         );
-    
+
         averageReturn = averageReturn / totalNumberOfInvestments;
         const currentValue = investedValue + interestEarned;
-    
+
         return {
             averageReturn,
             investedValue,

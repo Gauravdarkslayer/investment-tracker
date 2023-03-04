@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
     newCategoryName: [''],
   });
   secondFormGroup = this._formBuilder.group({
-    investmentAmount: ['', Validators.required, Validators.requiredTrue],
+    investmentAmount: ['', [Validators.required]],
     rateOfInterest: ['', Validators.required],
     startDate: ['', Validators.required],
     year: ['', Validators.required],
@@ -32,7 +32,6 @@ export class CreateComponent implements OnInit {
   categories: Array<any> = [];
 
   constructor(private _formBuilder: FormBuilder, private router: Router, private dataService: DataService) {
-    console.log();
 
   }
 
