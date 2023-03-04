@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { filter, Observable } from 'rxjs';
 import { Category } from 'src/app/interfaces/category.interface';
 import { DataService } from 'src/app/services/data.service';
-import { HelperService } from 'src/app/services/helper.service';
+import { ConfirmIcon } from '../shared/confirmation/confirm-icon.enum';
+import { IConfirmationData } from '../shared/confirmation/confirmation-data.interface';
+import { ConfirmationDialogComponent } from '../shared/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-fd-tracker',
@@ -12,16 +16,15 @@ import { HelperService } from 'src/app/services/helper.service';
 export class FdTrackerComponent implements OnInit {
   categories: Array<Category> = [];
   isInProgress: boolean = true;
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService, private router: Router,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAllCategories();
   }
 
   async getAllCategories() {
-    this.isInProgress = true;
     this.categories = await this.dataService.getAllCategoriesGroupedWithInvestments();
-    console.log(this.categories);
     this.isInProgress = false;
   }
 
@@ -29,15 +32,28 @@ export class FdTrackerComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
-  async deleteCategory(event:any,id:string) {
+  async deleteCategory(event: any, id: string) {
     event.stopPropagation();
-    if(confirm('Are you sure you want to delete this category ?')) {
-      if(1 || await this.dataService.deleteCategory(id)) {
-        this.categories = this.categories.filter(arr => arr._id !== id);
+    this.confirmDialog().subscribe(async (res: boolean) => {
+      console.log(res);
+      if (res) {
+        if (await this.dataService.deleteCategory(id)) { // It will delete the category
+          this.categories = this.categories.filter(arr => arr._id !== id);
+        }
       }
-      alert('you pressed yes, it will not delete category')
-    } else {
-      alert('operation cancelled');
-    }
+    })
+
   }
+
+  confirmDialog(): Observable<boolean> {
+    return this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: 'Confirm Action', message: `This will also delete all the investments inside this components. Continue ?`,
+        icon: ConfirmIcon.Error
+      },
+    }).afterClosed()
+      .pipe(filter((confirm: boolean) => confirm));
+
+  }
+
 }

@@ -19,6 +19,7 @@ import { FdCalculationsService } from './services/fd-calculations.service';
 import { HelperService } from './services/helper.service';
 import { InvestmentDetailComponent } from './components/fd-tracker/investment-detail/investment-detail.component';
 import { ToNumberPipe } from './pipes/toNumber.pipe';
+import { ConfirmationDialogComponent } from './components/shared/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ToNumberPipe } from './pipes/toNumber.pipe';
     ProgressLoaderComponent,
     InvestmentOverviewDashboardComponent,
     InvestmentDetailComponent,
-    ToNumberPipe
+    ToNumberPipe,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,7 @@ import { ToNumberPipe } from './pipes/toNumber.pipe';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [JwtService,DataService,FdCalculationsService,HelperService],
+  providers: [JwtService, DataService, FdCalculationsService, HelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

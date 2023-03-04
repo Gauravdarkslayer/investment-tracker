@@ -1,0 +1,16 @@
+<!-- <div class="icon">
+  <mat-icon  [inline]="true">{{data.icon}}</mat-icon>
+</div> -->
+
+<h1 mat-dialog-title>
+  {{data.title}}
+</h1>
+
+<div mat-dialog-content>
+  <p>{{data.message}}</p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="close(true)">Yes</button>
+  <button mat-button (click)="close(false)">No</button>
+</div>

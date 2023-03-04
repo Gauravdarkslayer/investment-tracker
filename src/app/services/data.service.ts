@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as Realm from 'realm-web'
+import { Investment } from '../interfaces/investment.interface';
 const {
     BSON: { ObjectId },
 } = Realm;
@@ -84,7 +85,7 @@ export class DataService {
         ]);
     }
 
-    async getInvestmentsByCategoryId(category_id: string) {
+     async getInvestmentsByCategoryId(category_id: string): Promise<Investment[]> {
         return await this.createOrConnectWithCollection('investment').find({ category_id: new ObjectId(category_id) });
     }
 

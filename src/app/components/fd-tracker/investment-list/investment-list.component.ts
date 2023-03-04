@@ -24,7 +24,6 @@ export class InvestmentListComponent implements OnInit {
     this.isInProgress = true;
     this.investments = await this.dataService.getInvestmentsByCategoryId(category_id);
     this.isInProgress = false;
-
   }
 
   backButtonClick(event: any) {
