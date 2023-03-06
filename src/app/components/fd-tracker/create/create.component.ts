@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
     newCategoryName: [''],
   });
   secondFormGroup = this._formBuilder.group({
-    investmentAmount: ['', [Validators.required]],
+    investmentAmount: ['', Validators.required],
     rateOfInterest: ['', Validators.required],
     startDate: ['', Validators.required],
     year: ['', Validators.required],
